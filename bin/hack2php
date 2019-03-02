@@ -12,7 +12,7 @@
 namespace codeneric\hack2php;
 
 <<__EntryPoint>>
-function transpileAsync(): Awaitable<noreturn> {
+async function transpileAsync(): Awaitable<noreturn> {
 
   $root = realpath(__DIR__.'/..');
   $found_autoloader = false;
@@ -37,5 +37,5 @@ function transpileAsync(): Awaitable<noreturn> {
     exit(1);
   }
 
-  exit(await TranspilerCLI::runAsync());
+  await TranspilerCLI::runAsync();
 }
