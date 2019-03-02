@@ -396,7 +396,7 @@ use type Facebook\HHAST\{
 };
 use function Facebook\HHAST\{Missing, find_position, find_offset};
 use namespace Facebook\TypeAssert;
-use namespace HH\Lib\{C, Vec};
+use namespace HH\Lib\{C, Vec, Dict};
 
 final class HackToPHPLinter extends ASTLinter<EditableNode> {
 
@@ -542,37 +542,31 @@ final class HackToPHPLinter extends ASTLinter<EditableNode> {
       }
 
       if ($child instanceof EnumDeclaration) {
-        // $enum_keyword = $node->getKeyword()->getCode();
         $enum_name = $child->getName()->getCode();
         $enumerators = $child->getEnumerators()?->getChildren();
-        $enumerators = !\is_null($enumerators) ? $enumerators : [];
-        $code = "final class $enum_name { private function __construct() {} \n";
 
-
-        $code .= "private static \$hacklib_values = array(\n";
-        foreach ($enumerators as $i => $e) {
-          invariant(
-            $e instanceof Enumerator,
-            'Children of EnumDeclaration has to be Enumerator',
-          );
-          $e_name = $e->getName()->getText();
-          $e_value = $e->getValue()->getCode();
-          $sep = $i >= \count($enumerators) - 1 ? '' : ',';
-          $code .= "\"$e_name\" => $e_value $sep\n";
+        $enum_array = [];
+        // = Dict\pull($enumerators, $e ==> $e->getName()->getText(), $e ==> $e->getValue()->getCode()); + invariant()
+        if ($enumerators !== null) {
+          foreach ($enumerators as $e) {
+            invariant(
+              $e instanceof Enumerator,
+              'Children of EnumDeclaration has to be Enumerator',
+            );
+            $enum_array[$e->getName()->getText()] = $e->getValue()->getCode();
+          }
         }
-        $code .= ");\n";
 
+        $code = "final class $enum_name { private function __construct() {} \n";
+        $code .= "private static \$hacklib_values = \n";
+        $code .= \print_r($enum_array, true);
+        $code .= ";\n";
         $code .= "use \HH\HACKLIB_ENUM_LIKE;\n";
-        foreach ($enumerators as $e) {
-          invariant(
-            $e instanceof Enumerator,
-            'Children of EnumDeclaration has to be Enumerator',
-          );
-          $e_name = $e->getName()->getText();
-          $e_value = $e->getValue()->getCode();
+        foreach ($enum_array as $e_name => $e_value) {
           $code .= "const $e_name = $e_value;\n";
         }
         $code .= " }\n";
+
         $sub_ast = $this->ast_from_code($code);
         $node = $node->replace($child, $sub_ast);
       }
@@ -624,7 +618,7 @@ final class HackToPHPLinter extends ASTLinter<EditableNode> {
     if ($node instanceof NamespaceDeclaration) {
       $code = $node
         ->getName()
-        ->getCode();
+        ?->getCode();
       $php = $this->sprinft($php, "namespace $code$P");
 
       $parents[] = $node;
