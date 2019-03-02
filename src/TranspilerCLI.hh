@@ -16,7 +16,7 @@ namespace codeneric\hack2php;
 use namespace Facebook\HHAST\__Private as AST_Prv;
 use namespace Facebook\HHAST\Linters;
 
-use namespace HH\Lib\{C, Math, Str, Vec};
+use namespace HH\Lib\{Math, Str, Vec};
 
 use type Facebook\CLILib\CLIWithArguments;
 use namespace Facebook\CLILib\CLIOptions;

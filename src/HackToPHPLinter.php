@@ -1,4 +1,4 @@
-<?hh // strict 
+<?hh // strict
 /*
  *  Copyright (c) 2017-present, Facebook, Inc.
  *  All rights reserved.
@@ -388,15 +388,12 @@ use type Facebook\HHAST\{
   XorToken,
   YieldToken,
 
-  //freestyle: 
+  //freestyle:
   EditableNode,
   Missing,
   EditableList,
 
 };
-use function Facebook\HHAST\{Missing, find_position, find_offset};
-use namespace Facebook\TypeAssert;
-use namespace HH\Lib\{C, Vec, Dict};
 
 final class HackToPHPLinter extends ASTLinter<EditableNode> {
 
@@ -921,7 +918,7 @@ final class HackToPHPLinter extends ASTLinter<EditableNode> {
     //   return $php;
     // }
 
-    if ($node->isToken()) { //abstraction    
+    if ($node->isToken()) { //abstraction
       $token = $node->getCode();
 
       $php = $this->sprinft($php, "$token$P");
