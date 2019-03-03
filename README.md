@@ -1,5 +1,6 @@
 # hack2php
-[![Build Status](https://travis-ci.org/codeneric/hack2php.svg?branch=master)](https://travis-ci.org/codeneric/hack2php) 
+
+[![Build Status](https://travis-ci.org/codeneric/hack2php.svg?branch=master)](https://travis-ci.org/codeneric/hack2php)
 
 hack2php is a project which aims to implement a compiler to translate Hack files to PHP 7 files.  
 This ability becomes useful when you have no control over the environment in which your code is supposed to run, but you still want to write your code in Hack.
@@ -51,7 +52,7 @@ function ano(){
 
 This project is in a very early stage, so you will probably encounter problems in some cases. If so, please create a PR and an issue as described in the Contribution section!
 
-Development is done using version HHVM LTS (3.30), HHVM 4.X and *.hack files have not been tested yet.
+Development is done using HHVM LTS (3.30), HHVM 4.X and *.hack files have not been tested yet.
 
 ## Getting started
 
