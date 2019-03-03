@@ -51,7 +51,7 @@ function ano(){
 
 This project is in a very early stage, so you will probably encounter problems in some cases. If so, please create a PR and an issue as described in the Contribution section!
 
-Development is done using version HHVM LTS (3.30), HHVM 4.X and *.hack files have not been tested yet.
+Development is done using HHVM LTS (3.30), HHVM 4.X and *.hack files have not been tested yet.
 
 ## Getting started
 
