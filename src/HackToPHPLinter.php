@@ -556,7 +556,7 @@ final class HackToPHPLinter extends ASTLinter<EditableNode> {
 
         $code = "final class $enum_name { private function __construct() {} \n";
         $code .= "private static \$hacklib_values = \n";
-        $code .= \print_r($enum_array, true);
+        $code .= \var_export($enum_array, true);
         $code .= ";\n";
         $code .= "use \HH\HACKLIB_ENUM_LIKE;\n";
         foreach ($enum_array as $e_name => $e_value) {
