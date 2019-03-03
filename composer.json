@@ -1,14 +1,16 @@
 {
     "name": "codeneric/hack2php",
+    "description": "A replacement for Facebook's HH to Php Transpiler (H2TP)",
+    "keywords": ["hack to php", "hack", "hh","php", "compiler", "Transpiler"],
     "type": "compiler",
     "bin": [ "bin/hack2php" ],
     "require": {
         "hhvm/hhast": "^3.27"
     },
     "require-dev": {
-        "facebook/fbexpect": "^0.4.0|^1.0.0",
-        "facebook/hack-codegen": "~3.0.3",
-        "hhvm/hhvm-autoload": "^1.5",
+        "_comment": "fbexpect v2.3.1+ is only useable with HHVM 4",
+        "facebook/fbexpect": "<v2.3.1",
+        "_comment": "hacktest v1.4+ is only useable with HHVM 4",
         "hhvm/hacktest": "^1.3"
     },
     "license": "MIT",
