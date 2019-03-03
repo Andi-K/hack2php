@@ -38,7 +38,6 @@ async function transpileAsync(): Awaitable<noreturn> {
   }
 
 
-#  $code = await TranspilerCLI::runAsync();
-#  exit($code);
-  exit(await TranspilerCLI::runAsync());
+  $code = await TranspilerCLI::runAsync();
+  exit($code);
 }
