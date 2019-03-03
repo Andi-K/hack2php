@@ -78,9 +78,9 @@ To validate the php code you can run `php -l <output-target/file.php>`
 
 ## Tests
 
-There is only one test (HackToPhpTest). It reads each Hack file from the example-files directory, compiles it to PHP and checks the PHP syntax for errors. If no error were found, the test succeeds. Otherwise it fails. 
-To add a test, simply create a new Hack file in example-files. 
-Run the test: `hhvm vendor/bin/phpunit`  
+There is only one test (HackToPhpTest). It reads each Hack file from the example-files directory, compiles it to PHP and checks the PHP syntax for errors. If no error were found, the test succeeds. Otherwise it fails.  
+To add a test, simply create a new Hack file in example-files.  
+Run the test: `hhvm vendor/bin//hacktest tests/`
 
 ## Contributing
 
